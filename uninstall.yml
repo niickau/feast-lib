@@ -1,0 +1,14 @@
+---
+- hosts: servers
+  become: true
+  gather_facts: no
+  tasks:
+    - name: delete files
+      shell: rm -f /tmp/*.whl
+    - name: copy file
+      copy:
+        src: '{{ PROJECT_DIR }}/dist/{{ WHL }}'
+        dest: /tmp
+    - name: uninstall
+      shell:
+        sudo pip3 uninstall -y feastlib

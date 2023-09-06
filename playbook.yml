@@ -1,0 +1,8 @@
+---
+- hosts: servers
+  become: true
+  gather_facts: no
+  tasks:
+    - name: install
+      shell:
+        sudo pip3 install /tmp/{{ WHL }}
